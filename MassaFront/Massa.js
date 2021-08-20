@@ -1,5 +1,5 @@
-const host = 'http://localhost/api';
-const endpoint = host + '/'
+const host = '192.168.0.161/api';
+const endpoint = host + '/Massa'
 
 function listar(){
     let request = new XMLHttpRequest();
@@ -15,9 +15,23 @@ function listar(){
                             <td>${e.id}</td>
                             <td>${e.tipo}</td>
                             <td>${e.molho}</td>
-                            <td>${e.queijo}</td>
+                            <td>${e.queijos}</td>
                          </tr>`;
                 corpo.innerHTML += linha;
         });
     }
 }
+
+function Salvar(){
+    let request = new XMLHttpRequest();
+    request.open('POST', endpoint);
+    request.send();
+    let id = JSON.parse(document.getElementById("id"));
+    let tipo = JSON.parse(document.getElementById("tipo"));
+    let molho = JSON.parse(document.getElementById("molho"));
+    let queijos = JSON.parse(document.getElementById("queijos"));
+    massa = {"id":id,"tipo":tipo,"molho":molho,"queijos":queijos};
+    endpoint.push(massa);
+    listar()
+}
+
